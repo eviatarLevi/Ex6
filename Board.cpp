@@ -49,7 +49,7 @@ void Board::operator=(char c)
 }
 void Board::operator=(const Board &b)
 {
-    delete(this);
+    delete(this);  
     Board ans = b;
     this->mat = ans.mat;
     this->n = ans.n;
