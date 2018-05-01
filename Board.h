@@ -15,9 +15,9 @@ class Board
     Board(int n);
     Board(const Board &b);
     ~Board();
-    //copy constracto
     Node& operator[] (list<int> l);
     void operator=(char);
+    void deleteNode(Node*** t);
     void operator=(const Board &b);
     friend ostream& operator << (ostream& out,const Board &b);
 };

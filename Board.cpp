@@ -22,12 +22,9 @@ Board::Board(const Board &b): mat(new Node**[b.n])
 }
 Board::~Board()
 {
-    for(int i = 0 ; i < n ; i++){
-        for(int j = 0 ; j < n ; j++)
-            delete(mat[i][j]);
-        delete(mat[i]);
-    }
-    
+    for(int i = n ; n-1>=0 ; i++)
+            delete[] mat[i];
+   
 }
 Node& Board::operator[](list <int> l)
 {
@@ -47,11 +44,18 @@ void Board::operator=(char c)
             mat[i][j]->setC(c);
     }
 }
+void deleteNode(Node*** t)
+{
+
+}
 void Board::operator=(const Board &b)
 {
-    delete(this);  
-    Board ans = b;
-    this->mat = ans.mat;
-    this->n = ans.n;
+    Node*** temp=this->mat;
+    delete(temp);  
+    this->n = b.n;
+      for(int i = 0 ; i < n ; i++){
+        for(int j = 0 ; j < n ; j++)
+           this->mat[i][j]->setC(b.mat[i][j]->getC());
+    }
 }
 
