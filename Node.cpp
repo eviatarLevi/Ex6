@@ -6,9 +6,10 @@ Node::Node(char c)
 }
 void Node::setC(char c)
 {
-    if(c == '.' || c == 'X' || c == 'O')
+    if (c == '.' || c == 'X' || c == 'O')
         this->c = c;
-    else{
+    else
+    {
         IllegalCharException ex;
         ex.setInput(c);
         throw ex;
@@ -18,6 +19,7 @@ char Node::getC()
 {
     return this->c;
 }
+
 void Node::operator=(char c)
 {
     this->setC(c);

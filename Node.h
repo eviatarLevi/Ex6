@@ -1,14 +1,14 @@
 #include <iostream>
 using namespace std;
 
-
 class Node
 {
-    private:
+  private:
     char c;
-    public:
+
+  public:
     Node(char c);
     void setC(char c);
     char getC();
-    void operator= (char c);
- };
+    void operator=(char c);
+};
