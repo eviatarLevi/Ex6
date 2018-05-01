@@ -2,7 +2,6 @@
 
 Node::Node()
 {
-
 }
 
 Node::Node(char c)

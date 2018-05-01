@@ -3,13 +3,13 @@ using namespace std;
 
 class Node
 {
-  private:
-    char c;
+private:
+  char c;
 
-  public:
+public:
   Node();
-    Node(char c);
-    void setC(char c);
-    char getC();
-    void operator=(char c);
+  Node(char c);
+  void setC(char c);
+  char getC();
+  void operator=(char c);
 };
