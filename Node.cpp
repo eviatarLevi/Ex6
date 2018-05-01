@@ -1,5 +1,10 @@
 #include "Board.h"
 
+Node::Node()
+{
+
+}
+
 Node::Node(char c)
 {
     this->setC(c);

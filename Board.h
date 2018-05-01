@@ -10,7 +10,7 @@ class Board
 {
 
   public:
-    Node ***mat;
+    Node **mat;
     int n;
     Board(int n);
     Board(const Board &b);
@@ -26,7 +26,7 @@ inline ostream &operator<<(ostream &out, const Board &b)
     for (int i = 0; i < b.n; i++)
     {
         for (int j = 0; j < b.n; j++)
-            cout << b.mat[i][j]->getC();
+            cout << b.mat[i][j].getC();
         cout << endl;
     }
     return out;

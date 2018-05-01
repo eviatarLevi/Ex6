@@ -7,6 +7,7 @@ class Node
     char c;
 
   public:
+  Node();
     Node(char c);
     void setC(char c);
     char getC();
