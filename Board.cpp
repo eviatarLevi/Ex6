@@ -55,13 +55,14 @@ Node &Board::operator[](list<int> l)
         throw ex;
     } //exp
 }
-void Board::operator=(char c)
+Board& Board::operator=(char c)
 {
     for (int i = 0; i < n; i++)
     {
         for (int j = 0; j < n; j++)
             mat[i][j].setC(c);
     }
+    return *this;
 }
 
 Board& Board::operator=(const Board &b)
