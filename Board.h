@@ -15,14 +15,14 @@ class Board
     Board(int n);
     Board(const Board &b);
     ~Board();
-    void deleteB(Node** mat);
+    void deleteB(Node **mat);
     Node &operator[](list<int> l);
-    Board& operator=(char);
-    Board& operator=(const Board &b);
-    friend ostream& operator<<(ostream &out, const Board &b);
+    Board &operator=(char);
+    Board &operator=(const Board &b);
+    friend ostream &operator<<(ostream &out, const Board &b);
 };
 
-inline ostream& operator<<(ostream &out, const Board &b)
+inline ostream &operator<<(ostream &out, const Board &b)
 {
     for (int i = 0; i < b.n; i++)
     {

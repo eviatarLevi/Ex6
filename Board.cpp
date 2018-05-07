@@ -3,7 +3,7 @@
 Board::Board(int n)
 {
     this->n = n;
-    this->mat=new Node *[n];
+    this->mat = new Node *[n];
     for (int i = 0; i < n; i++)
     {
         mat[i] = new Node[n];
@@ -18,7 +18,7 @@ Board::Board(int n)
 Board::Board(const Board &b)
 {
     this->n = b.n;
-    this->mat=new Node *[n];
+    this->mat = new Node *[n];
     for (int i = 0; i < n; i++)
     {
         mat[i] = new Node[n];
@@ -29,9 +29,9 @@ Board::Board(const Board &b)
             mat[i][j] = Node(b.mat[i][j].getC());
     }
 }
-void Board::deleteB(Node** mat)
+void Board::deleteB(Node **mat)
 {
-for (int i = 0; i < n; i++)
+    for (int i = 0; i < n; i++)
     {
         delete[] mat[i];
     }
@@ -55,28 +55,32 @@ Node &Board::operator[](list<int> l)
         throw ex;
     } //exp
 }
-Board& Board::operator=(char c)
+Board &Board::operator=(char c)
 {
-    for (int i = 0; i < n; i++)
+    if (c == '.')
     {
-        for (int j = 0; j < n; j++)
-            mat[i][j].setC(c);
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < n; j++)
+                mat[i][j].setC(c);
+        }
+        return *this;
     }
-    return *this;
 }
 
-Board& Board::operator=(const Board &b)
+Board &Board::operator=(const Board &b)
 {
-    if (this==&b)
-    return *this;
+    if (this == &b)
+        return *this;
     this->n = b.n;
-    if (b.n!=this->n) {
-    deleteB(this->mat);
-    this->mat=new Node*[b.n];
-     for (int i = 0; i < n; i++)
+    if (b.n != this->n)
     {
-        mat[i] = new Node[n];
-    }
+        deleteB(this->mat);
+        this->mat = new Node *[b.n];
+        for (int i = 0; i < n; i++)
+        {
+            mat[i] = new Node[n];
+        }
     }
     for (int i = 0; i < n; i++)
     {

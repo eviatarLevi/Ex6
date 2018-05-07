@@ -24,8 +24,7 @@ char Node::getC() const
     return this->c;
 }
 
-
-Node& Node::operator=(char c)
+Node &Node::operator=(char c)
 {
     this->setC(c);
     return *this;
