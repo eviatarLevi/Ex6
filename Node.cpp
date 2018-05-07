@@ -19,7 +19,7 @@ void Node::setC(char c)
         throw ex;
     }
 }
-char Node::getC()
+char Node::getC() const
 {
     return this->c;
 }
@@ -30,7 +30,8 @@ void Node::operator=(char c)
     this->setC(c);
 }
 
-int Node::operator==(char y)
+int Node::operator==(char y) const
 {
-    return this->getC()==y;
+    int x=this->getC()==y;
+    return x;
 }
