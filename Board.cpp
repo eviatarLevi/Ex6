@@ -1,8 +1,9 @@
 #include "Board.h"
 
-Board::Board(int n) : mat(new Node *[n])
+Board::Board(int n)
 {
     this->n = n;
+    this->mat=new Node *[n];
     for (int i = 0; i < n; i++)
     {
         mat[i] = new Node[n];
@@ -14,9 +15,10 @@ Board::Board(int n) : mat(new Node *[n])
             mat[i][j] = Node('.');
     }
 }
-Board::Board(const Board &b) : mat(new Node *[b.n])
+Board::Board(const Board &b)
 {
     this->n = b.n;
+    this->mat=new Node *[n];
     for (int i = 0; i < n; i++)
     {
         mat[i] = new Node[n];
