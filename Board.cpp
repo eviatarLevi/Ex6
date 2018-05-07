@@ -61,8 +61,8 @@ void Board::operator=(const Board &b)
         return;
     if (b.n != this->n)
     {
-        deleteB(mat);
         this->n = b.n;
+        deleteB(mat);
         mat = new Node *[b.n];
         for (int i = 0; i < n; i++)
         {
