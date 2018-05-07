@@ -25,9 +25,10 @@ char Node::getC() const
 }
 
 
-void Node::operator=(char c)
+Node& Node::operator=(char c)
 {
     this->setC(c);
+    return *this;
 }
 
 // int Node::operator==(char y) const

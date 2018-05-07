@@ -11,7 +11,7 @@ public:
   Node(char c);
   void setC(char c);
   char getC() const;
-  void operator=(char c);
+  Node& operator=(char c);
   friend ostream &operator<<(ostream &out, Node &b);
   // int operator==(char y) const;
   operator char()const {return c;}
