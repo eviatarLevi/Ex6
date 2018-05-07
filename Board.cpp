@@ -66,6 +66,12 @@ Board &Board::operator=(char c)
         }
         return *this;
     }
+    else
+    {
+        IllegalCharException ex;
+        ex.setInput(c);
+        throw ex;
+    }
     return *this;
 }
 
