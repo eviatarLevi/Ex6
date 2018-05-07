@@ -66,6 +66,7 @@ Board &Board::operator=(char c)
         }
         return *this;
     }
+    return *this;
 }
 
 Board &Board::operator=(const Board &b)
