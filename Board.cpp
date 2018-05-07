@@ -26,7 +26,7 @@ Board::Board(const Board &b)
     for (int i = 0; i < n; i++)
     {
         for (int j = 0; j < n; j++)
-            mat[i][j] = Node(b.mat[i][j].getC());
+            mat[i][j] = b.mat[i][j];
     }
 }
 void Board::deleteB(Node **mat)
@@ -45,7 +45,7 @@ Node &Board::operator[](list<int> l)
 {
     int a = l.front(), b = l.back();
     ;
-    if (a < n && a >= 0 && b < n && b >= 0)
+    if (a < n || a >= 0 || b < n || b >= 0)
         return this->mat[a][b];
     else
     {
