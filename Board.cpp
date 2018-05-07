@@ -57,6 +57,14 @@ void Board::operator=(const Board &b)
     this->n = b.n;
     for (int i = 0; i < n; i++)
     {
+        delete[] this->mat[i];
+    }
+    delete[] this->mat;
+    this->mat=new Node*[b.n];
+      for (int i = 0; i < n; i++)
+        mat[i] = new Node[n];
+    for (int i = 0; i < n; i++)
+    {
         for (int j = 0; j < n; j++)
             this->mat[i][j].setC(b.mat[i][j].getC());
     }
