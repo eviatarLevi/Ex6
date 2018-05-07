@@ -13,7 +13,7 @@ public:
   char getC() const;
   Node &operator=(char c);
   friend ostream &operator<<(ostream &out, Node &b);
-  operator char() const { return c; }
+  operator char() const ;
 };
 
 inline ostream &operator<<(ostream &out, Node &b)

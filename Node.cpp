@@ -29,8 +29,7 @@ Node &Node::operator=(char c)
     this->setC(c);
     return *this;
 }
-
-// int Node::operator==(char y) const
-// {
-//     return this->getC()==y;;
-// }
+Node::operator char() const
+{
+     return this->getC();
+}
