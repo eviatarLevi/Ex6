@@ -34,31 +34,28 @@ inline ostream &operator<<(ostream &out, const Board &b)
 }
 class IllegalCoordinateException : public exception
 {
-    int a, b;
-
-  public:
-    void setA(int row)
-    {
-        this->a = row;
-    }
-    void setB(int col)
-    {
-        this->b = col;
-    }
-    string theCoordinate() const
-    {
-        return to_string(a) + "," + to_string(b);
-    }
+    int a,b;
+    public: 
+        void setA(int row){
+            this->a=row;
+            }
+        void setB(int col){
+            this->b=col;
+            }
+        string theCoordinate ()const
+        {
+            return to_string(a)+","+to_string(b);
+        }
 };
 
 class IllegalCharException : public exception
 {
     char input;
-
-  public:
-    char theChar() const
-    {
-        return input;
-    }
-    void setInput(int c) { input = c; }
+    
+    public:
+        char theChar()const
+        {
+            return input;
+        }
+        void setInput(int c){input=c;}
 };
