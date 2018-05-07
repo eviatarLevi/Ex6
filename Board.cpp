@@ -45,7 +45,7 @@ Node &Board::operator[](list<int> l)
 {
     int a = l.front(), b = l.back();
     ;
-    if (a < n || a >= 0 || b < n || b >= 0)
+    if (a < n && a >= 0 && b < n && b >= 0)
         return this->mat[a][b];
     else
     {
@@ -92,7 +92,7 @@ Board &Board::operator=(const Board &b)
     for (int i = 0; i < n; i++)
     {
         for (int j = 0; j < n; j++)
-            this->mat[i][j].setC(b.mat[i][j].getC());
+            this->mat[i][j]=b.mat[i][j];
     }
     return *this;
 }
