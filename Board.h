@@ -17,8 +17,8 @@ class Board
     ~Board();
     void deleteB(Node **mat);
     Node &operator[](list<int> l);
-    Board &operator=(char);
-    Board &operator=(const Board &b);
+    void operator=(char);
+    void operator=(const Board &b);
     friend ostream &operator<<(ostream &out, const Board &b);
 };
 

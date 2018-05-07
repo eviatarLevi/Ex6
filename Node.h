@@ -11,13 +11,15 @@ public:
   Node(char c);
   void setC(char c);
   char getC() const;
-  Node &operator=(char c);
+  Node& operator=(char c);
   friend ostream &operator<<(ostream &out, Node &b);
-  operator char() const ;
+  operator char()const {return c;}
 };
 
 inline ostream &operator<<(ostream &out, Node &b)
 {
-  out << b.getC();
-  return out;
+    out<<b.getC();
+    return out;
 }
+
+

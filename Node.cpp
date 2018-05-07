@@ -24,22 +24,9 @@ char Node::getC() const
     return this->c;
 }
 
-Node &Node::operator=(char c)
+
+Node& Node::operator=(char c)
 {
-    if (c == 'X' || c == 'O' || c == '.')
-    {
-        this->c = c;
-        return *this;
-    }
-    else
-    {
-        IllegalCharException ex;
-        ex.setInput(c);
-        throw ex;
-    }
+    this->setC(c);
     return *this;
-}
-Node::operator char() const
-{
-    return this->getC();
 }

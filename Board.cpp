@@ -1,30 +1,21 @@
 #include "Board.h"
 
-Board::Board(int n)
+Board::Board(int n) : mat(new Node *[n])
 {
     this->n = n;
-    this->mat = new Node *[n];
     for (int i = 0; i < n; i++)
     {
         mat[i] = new Node[n];
-    }
-    for (int i = 0; i < n; i++)
-    {
-
         for (int j = 0; j < n; j++)
             mat[i][j] = Node('.');
     }
 }
-Board::Board(const Board &b)
+Board::Board(const Board &b) : mat(new Node *[b.n])
 {
     this->n = b.n;
-    this->mat = new Node *[n];
     for (int i = 0; i < n; i++)
     {
         mat[i] = new Node[n];
-    }
-    for (int i = 0; i < n; i++)
-    {
         for (int j = 0; j < n; j++)
             mat[i][j] = b.mat[i][j];
     }
@@ -55,33 +46,22 @@ Node &Board::operator[](list<int> l)
         throw ex;
     } //exp
 }
-Board &Board::operator=(char c)
+void Board::operator=(char c)
 {
-    if (c == '.')
+    for (int i = 0; i < n; i++)
     {
-        for (int i = 0; i < n; i++)
-        {
-            for (int j = 0; j < n; j++)
-                mat[i][j].setC(c);
-        }
-        return *this;
+        for (int j = 0; j < n; j++)
+            mat[i][j].setC(c);
     }
-    else
-    {
-        IllegalCharException ex;
-        ex.setInput(c);
-        throw ex;
-    }
-    return *this;
 }
 
-Board &Board::operator=(const Board &b)
+void Board::operator=(const Board &b)
 {
     if (this == &b)
-        return *this;
+        return;
     if (b.n != this->n)
     {
-         this->n = b.n;
+        this->n = b.n;
         deleteB(mat);
         this->mat = new Node *[b.n];
         for (int i = 0; i < n; i++)
@@ -92,9 +72,8 @@ Board &Board::operator=(const Board &b)
     for (int i = 0; i < n; i++)
     {
         for (int j = 0; j < n; j++)
-            this->mat[i][j]=b.mat[i][j];
+            this->mat[i][j] = b.mat[i][j];
     }
-    return *this;
 }
 
 ostream &operator<<(ostream &out, const Board &b)
