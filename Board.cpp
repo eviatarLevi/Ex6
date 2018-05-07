@@ -39,14 +39,14 @@ void Board::deleteB(Node **mat)
 }
 Board::~Board()
 {
-    deleteB(this->mat);
+    deleteB(mat);
 }
 Node &Board::operator[](list<int> l)
 {
     int a = l.front(), b = l.back();
     ;
     if (a < n && a >= 0 && b < n && b >= 0)
-        return this->mat[a][b];
+        return mat[a][b];
     else
     {
         IllegalCoordinateException ex;
@@ -79,10 +79,10 @@ Board &Board::operator=(const Board &b)
 {
     if (this == &b)
         return *this;
-    this->n = b.n;
     if (b.n != this->n)
     {
-        deleteB(this->mat);
+         this->n = b.n;
+        deleteB(mat);
         this->mat = new Node *[b.n];
         for (int i = 0; i < n; i++)
         {
@@ -95,4 +95,15 @@ Board &Board::operator=(const Board &b)
             this->mat[i][j]=b.mat[i][j];
     }
     return *this;
+}
+
+ostream &operator<<(ostream &out, const Board &b)
+{
+    for (int i = 0; i < b.n; i++)
+    {
+        for (int j = 0; j < b.n; j++)
+            out << b.mat[i][j].getC();
+        out << endl;
+    }
+    return out;
 }

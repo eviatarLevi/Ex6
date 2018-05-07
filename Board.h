@@ -22,16 +22,6 @@ class Board
     friend ostream &operator<<(ostream &out, const Board &b);
 };
 
-inline ostream &operator<<(ostream &out, const Board &b)
-{
-    for (int i = 0; i < b.n; i++)
-    {
-        for (int j = 0; j < b.n; j++)
-            out << b.mat[i][j].getC();
-        out << endl;
-    }
-    return out;
-}
 class IllegalCoordinateException : public exception
 {
     int a,b;
