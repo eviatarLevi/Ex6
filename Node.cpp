@@ -30,8 +30,7 @@ void Node::operator=(char c)
     this->setC(c);
 }
 
-int Node::operator==(char y) const
-{
-    int x=this->getC()==y;
-    return x;
-}
+// int Node::operator==(char y) const
+// {
+//     return this->getC()==y;;
+// }
