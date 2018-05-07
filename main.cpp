@@ -14,8 +14,8 @@ cout << board1 << endl;			/* Shows an empty board:
 cout << board1[{1, 2}] << endl; // .
 board1[{1, 1}] = 'X';
 board1[{1, 2}] = 'O';
-//char c = board1[{1, 2}];
-//cout << c << endl;		// O
+char c = board1[{1, 2}];
+cout << c << endl;		// O
 cout << board1 << endl; /* Shows the following board:
 	....
 	.XO.

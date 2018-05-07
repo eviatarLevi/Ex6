@@ -14,6 +14,7 @@ public:
   void operator=(char c);
   friend ostream &operator<<(ostream &out, Node &b);
   // int operator==(char y) const;
+  operator char()const {return c;}
 };
 
 inline ostream &operator<<(ostream &out, Node &b)
