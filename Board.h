@@ -19,7 +19,7 @@ class Board
     Node &operator[](list<int> l);
     void operator=(char);
     void deleteNode(Board *t);
-    void operator=(const Board &b);
+    Board& operator=(const Board &b);
     friend ostream& operator<<(ostream &out, const Board &b);
 };
 
