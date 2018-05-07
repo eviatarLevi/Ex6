@@ -20,12 +20,8 @@ class Board
     void deleteNode(Board *t);
     void operator=(const Board &b);
     friend ostream &operator<<(ostream &out, const Board &b);
-    friend bool operator==( Node& t,char y);
 };
-inline bool operator==( Node& t,char y)
-{
-    return t.getC()==y;
-}
+
 inline ostream &operator<<(ostream &out, const Board &b)
 {
     for (int i = 0; i < b.n; i++)

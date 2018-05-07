@@ -13,6 +13,7 @@ public:
   char getC() ;
   void operator=(char c);
   friend ostream &operator<<(ostream &out, Node &b);
+  int operator==(char y);
 };
 
 inline ostream &operator<<(ostream &out, Node &b)
@@ -20,3 +21,5 @@ inline ostream &operator<<(ostream &out, Node &b)
     out<<b.getC();
     return out;
 }
+
+
