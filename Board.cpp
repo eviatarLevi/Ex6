@@ -6,6 +6,10 @@ Board::Board(int n) : mat(new Node *[n])
     for (int i = 0; i < n; i++)
     {
         mat[i] = new Node[n];
+    }
+    for (int i = 0; i < n; i++)
+    {
+
         for (int j = 0; j < n; j++)
             mat[i][j] = Node('.');
     }
@@ -18,6 +22,9 @@ Board::Board(const Board &b) : mat(new Node *[b.n])
     for (int i = 0; i < n; i++)
     {
         mat[i] = new Node[n];
+    }
+    for (int i = 0; i < n; i++)
+    {
         for (int j = 0; j < n; j++)
             mat[i][j] = Node(b.mat[i][j].getC());
     }
@@ -59,7 +66,15 @@ void Board::operator=(char c)
 
 void Board::operator=(const Board &b)
 {
+    if (this==&b)
+return *this;
     this->n = b.n;
+    delete(this->mat);
+    this->mat=new Node*[b.n];
+     for (int i = 0; i < n; i++)
+    {
+        mat[i] = new Node[n];
+    }
     for (int i = 0; i < n; i++)
     {
         for (int j = 0; j < n; j++)
