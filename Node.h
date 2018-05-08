@@ -21,3 +21,14 @@ inline ostream &operator<<(ostream &out, Node &b)
   out << b.getC();
   return out;
 }
+class Coordinate {
+    private:
+    int x;
+    int y;
+    public:
+    Coordinate(int xVal,int yVal);
+    int getX()const {return x;};
+    int getY()const {return y;};
+
+
+};

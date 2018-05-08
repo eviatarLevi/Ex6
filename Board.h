@@ -12,13 +12,16 @@ class Board
   public:
     Node **mat;
     int n;
+    Board();
     Board(int n);
     Board(const Board &b);
     ~Board();
     void deleteB(Node **mat);
-    Node &operator[](list<int> l);
+    //Node &operator[](list<int> l);
+    Node &operator[](const Coordinate& cr) const;
     void operator=(char);
     void operator=(const Board &b);
+    int size() const;
     friend ostream &operator<<(ostream &out, const Board &b);
 };
 

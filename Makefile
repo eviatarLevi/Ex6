@@ -1,12 +1,24 @@
-make: main.cpp Board.o Node.o
-	clang++-5.0 -std=c++17 main.cpp *.o -o a.out
-	valgrind --tool=memcheck ./a.out
+# A generic makefile for running single-file C++ projects.
+#
+# AUTHOR: Erel Segal-Halevi
 
-Board.o: Board.cpp Board.h 
-	clang++-5.0 -std=c++17 -c Board.cpp -o Board.o
+CXX=clang++-5.0
+RM=rm -f
+CPPFLAGS=-std=c++17 
 
-Node.o: Node.cpp Node.h 
-	clang++-5.0 -std=c++17 -c Node.cpp -o Node.o
+ifndef MAIN
+  MAIN=./main.cpp
+endif
+
+MAINEXECUTABLE=$(subst .cpp,,$(MAIN)).exe
+
+SOURCES=$(MAIN)
+
+all: $(MAINEXECUTABLE)
+	$(MAINEXECUTABLE)
+
+$(MAINEXECUTABLE): $(SOURCES) $(HEADERS)
+	$(CXX) $(CPPFLAGS) $(SOURCES) -o $(MAINEXECUTABLE)
 
 clean:
-	rm *.o a.out
+	$(RM) *.exe a.out *.class

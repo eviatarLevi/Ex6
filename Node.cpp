@@ -30,3 +30,8 @@ Node& Node::operator=(char c)
     this->setC(c);
     return *this;
 }
+
+Coordinate::Coordinate(int xVal, int yVal):x(xVal),y(yVal)
+{
+
+}

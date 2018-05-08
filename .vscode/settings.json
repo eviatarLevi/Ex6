@@ -6,6 +6,10 @@
         "iostream": "cpp",
         "xstring": "cpp",
         "xutility": "cpp",
-        "exception": "cpp"
+        "exception": "cpp",
+        "system_error": "cpp",
+        "xlocale": "cpp",
+        "initializer_list": "cpp",
+        "type_traits": "cpp"
     }
 }
