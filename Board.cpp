@@ -44,7 +44,7 @@ Node &Board::operator[](list<int> l)
         ex.setA(a);
         ex.setB(b);
         throw ex;
-    } //exp
+    } 
 }
 void Board::operator=(char c)
 {
