@@ -14,8 +14,8 @@ Board.o: Board.cpp Board.h  TicTacToe.cpp TicTacToe.h Champion.cpp Champion.h Du
 	$(CXX) $(CXXFLAGS) -c TicTacToe.cpp
 	$(CXX) $(CXXFLAGS) -c DummyPlayers.cpp
 
-make.o: make.cpp TicTacToe.h Champion.h DummyPlayers.h
-	$(CXX) $(CXXFLAGS) -c make.cpp
+main.o: main.cpp TicTacToe.h Champion.h DummyPlayers.h
+	$(CXX) $(CXXFLAGS) -c main.cpp
 
 Node.o: Node.cpp Node.h
 	$(CXX) $(CXXFLAGS) -c Node.cpp
