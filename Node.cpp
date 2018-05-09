@@ -35,3 +35,8 @@ Coordinate::Coordinate(int xVal, int yVal):x(xVal),y(yVal)
 {
 
 }
+void Coordinate::setXY(int xVal, int yVal) 
+{
+    x = xVal;
+    y = yVal;
+}

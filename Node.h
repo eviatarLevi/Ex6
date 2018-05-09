@@ -29,6 +29,7 @@ class Coordinate {
     Coordinate(int xVal,int yVal);
     int getX()const {return x;};
     int getY()const {return y;};
+    void setXY(int xVal, int yVal);
 
 
 };

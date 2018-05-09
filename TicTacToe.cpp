@@ -1,55 +1,76 @@
 #include "TicTacToe.h"
-
+#include <string>
 TicTacToe::TicTacToe(int size):game(size)
 {
 
 }
 void TicTacToe::play(Player &xPlayer, Player &oPlayer)
 {
+    game ='.';
     int count = 0;
+    xPlayer.setChar('X');
+    oPlayer.setChar('O');
     while(count < game.size()*game.size()){
-        oPlayer.play(game);
-        if(ifWin(oPlayer)) { win = oPlayer; return;}
+        try{
+            Coordinate r = xPlayer.play(game);
+            if(game[r]=='.')
+                game[r] = xPlayer.getChar();
+            else
+                {win = &oPlayer; return;}
+        }
+        catch(const string& msg) {win = &oPlayer; return;}
+        if(ifWin(xPlayer)) { win = &xPlayer; return;}
         count++;
+      //  cout << count << endl;
         if(count < game.size()*game.size()){
-            xPlayer.play(game);
-            if(ifWin(xPlayer)) { win = xPlayer; return;}
+            try{
+                Coordinate r = oPlayer.play(game);
+                if(game[r]=='.')
+                    game[r] = oPlayer.getChar();
+                else
+                    {win = &xPlayer; return;}
+            }
+            catch(const string& msg) {win = &xPlayer; return;}
+
+            if(ifWin(oPlayer)) { win = &oPlayer; return;}
             count++;
         }
     }   
-    win = oPlayer;
+    win = &oPlayer;
 }
 bool TicTacToe::ifWin(Player &p)
 {
+    bool b = true;
     for(int i = 0; i< game.size() ; i++)
     {
-        bool b = true;
+        b = true;
         for(int j = 0; j<game.size() ; j++)
         {
             if(game[{i,j}] != p.getC()){
                 b = false;
                 break;
             }
-            if(b == true) return true;
         }
+        if(b == true) return true;
+        b = true;
         for(int j = 0; j<game.size() ; j++)
         {
             if(game[{j,i}] != p.getC()){
                 b = false;
                 break;
             }
-            if(b == true) return true;
         }
+        if(b == true) return true;
     }
-    bool b = true;
+    b = true;
     for(int i = 0; i< game.size() ; i++)
     {
         if(game[{i,i}] != p.getC()){
                 b = false;
                 break;
             }
-        if(b == true) return true;
     }
+     if(b == true) return true;
     b = true;
     for(int i = 0; i< game.size() ; i++)
     {
@@ -57,14 +78,15 @@ bool TicTacToe::ifWin(Player &p)
                 b = false;
                 break;
             }
-        if(b == true) return true;
     }
+    if(b == true) return true;
+    return false;
 }
 Board TicTacToe::board() const
 {
     return game;
 }
-Player TicTacToe::winner() const
+Player& TicTacToe::winner() const
 {
-    return win;
+    return *win;
 }
