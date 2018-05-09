@@ -2,8 +2,10 @@ CXX=clang++-5.0
 RM=rm -f
 CXXFLAGS=-std=c++14
 
-make: 
-	$(CXX) $(CXXFLAGS) *.o -o a.out
+all: Board.o Node.o
+
+make: all main.o
+	$(CXX) $(CXXFLAGS) *.o
 	./a.out
 	
 Board.o: Board.cpp Board.h  TicTacToe.cpp TicTacToe.h Champion.cpp Champion.h DummyPlayers.cpp DummyPlayers.h
@@ -12,7 +14,10 @@ Board.o: Board.cpp Board.h  TicTacToe.cpp TicTacToe.h Champion.cpp Champion.h Du
 	$(CXX) $(CXXFLAGS) -c TicTacToe.cpp
 	$(CXX) $(CXXFLAGS) -c DummyPlayers.cpp
 
-Node.o: Node.cpp Node.h 
+make.o: make.cpp TicTacToe.h Champion.h DummyPlayers.h
+	$(CXX) $(CXXFLAGS) -c make.cpp
+
+Node.o: Node.cpp Node.h
 	$(CXX) $(CXXFLAGS) -c Node.cpp
 
 clean:
