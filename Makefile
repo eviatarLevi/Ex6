@@ -1,24 +1,19 @@
-# A generic makefile for running single-file C++ projects.
-#
-# AUTHOR: Erel Segal-Halevi
-
 CXX=clang++-5.0
 RM=rm -f
-CPPFLAGS=-std=c++17 
+CXXFLAGS=-std=c++14
 
-ifndef MAIN
-  MAIN=./main.cpp
-endif
+make: main.cpp 
+	$(CXX) $(CXXFLAGS) main.cpp *.o -o a.out
+	./a.out
+	
+Board.o: Board.cpp Board.h  TicTacToe.cpp TicTacToe.h Champion.cpp Champion.h DummyPlayers.cpp DummyPlayers.h
+	$(CXX) $(CXXFLAGS) -c Board.cpp
+	$(CXX) $(CXXFLAGS) -c Champion.cpp
+	$(CXX) $(CXXFLAGS) -c TicTacToe.cpp
+	$(CXX) $(CXXFLAGS) -c DummyPlayers.cpp
 
-MAINEXECUTABLE=$(subst .cpp,,$(MAIN)).exe
-
-SOURCES=$(MAIN)
-
-all: $(MAINEXECUTABLE)
-	$(MAINEXECUTABLE)
-
-$(MAINEXECUTABLE): $(SOURCES) $(HEADERS)
-	$(CXX) $(CPPFLAGS) $(SOURCES) -o $(MAINEXECUTABLE)
+Node.o: Node.cpp Node.h 
+	$(CXX) $(CXXFLAGS) -c Node.cpp
 
 clean:
-	$(RM) *.exe a.out *.class
+	$(RM) *.o a.out
