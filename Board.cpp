@@ -1,8 +1,14 @@
 #include "Board.h"
-
-Board::Board()
+using namespace std;
+Board::Board(): mat(new Node *[1])
 {
-
+    this->n = 1;
+    for (int i = 0; i < n; i++)
+    {
+        this->mat[i] = new Node[n];
+        for (int j = 0; j < n; j++)
+            mat[i][j] = Node('.');
+    }
 }
 
 Board::Board(int n) : mat(new Node *[n])
@@ -103,6 +109,26 @@ ostream &operator<<(ostream &out, const Board &b)
         out << endl;
     }
     return out;
+}
+istream &operator>>(istream &cin, Board &board)
+{
+    string str;
+    cin >> str;
+    Board b(str.length());
+    int j = 0;
+    while(j < b.n )
+    {
+        for(int i = 0 ; i<b.n ; i++)
+        {          
+            const char* c = str.c_str();
+            b.mat[j][i].setC(c[i]);
+        }
+        j++;
+        cin >> str;
+    }
+    board = b;
+    return cin;
+
 }
 int Board::size() const
 {

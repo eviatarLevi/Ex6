@@ -4,6 +4,7 @@
 #include <list>
 #include <exception>
 #include <string>
+#include <fstream>
 using namespace std;
 
 class Board
@@ -23,7 +24,9 @@ class Board
     void operator=(const Board &b);
     int size() const;
     friend ostream &operator<<(ostream &out, const Board &b);
+    friend istream &operator>>(istream &cin, Board &b);
 };
+
 
 class IllegalCoordinateException : public exception
 {
