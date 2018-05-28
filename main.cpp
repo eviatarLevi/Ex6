@@ -4,10 +4,9 @@
 #include <string>
 using namespace std;
 
-
 int main() {
 	Board board;
 	cin >> board;
-	cout << board;
-	return 0;
+	string filename = board.draw(600);
+	cout << filename << endl;
 }

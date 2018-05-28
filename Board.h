@@ -5,7 +5,15 @@
 #include <exception>
 #include <string>
 #include <fstream>
+#include <math.h>
+#include <time.h>
 using namespace std;
+struct RGB {
+  uint8_t red, green, blue;
+public:
+  RGB() {}
+  RGB(uint8_t red, uint8_t green, uint8_t blue): red(red), green(green), blue(blue) {}
+};
 
 class Board
 {
@@ -25,6 +33,13 @@ class Board
     int size() const;
     friend ostream &operator<<(ostream &out, const Board &b);
     friend istream &operator>>(istream &cin, Board &b);
+    string draw(const int pix) const;
+    private:
+    string getTime () const;
+    void grid(RGB* img,int pix)const; 
+    void eixs(RGB* img,int pix,int x,int y)const;
+    void cir(RGB* img,int pix,int x, int y)const;
+    int point(int pix,int x,int y)const;
 };
 
 

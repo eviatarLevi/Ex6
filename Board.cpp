@@ -134,3 +134,78 @@ int Board::size() const
 {
     return n;
 }
+string Board::getTime()const
+{
+    time_t timeObj;
+    time(&timeObj);
+    tm *pTime = gmtime(&timeObj);
+    char buffer[100];
+    sprintf(buffer, "%d%d%d", pTime->tm_hour, pTime->tm_min, pTime->tm_sec);
+    return buffer;
+}
+string Board::draw(const int pix) const
+{
+    string fileName = getTime() + ".ppm";
+    ofstream imageFile(fileName, ios::out | ios::binary);
+    imageFile << "P6" << endl << pix <<" " << pix << endl << 255 << endl;
+    int pixs = pix*pix;
+    RGB * image = new RGB[pixs];
+    grid(image,pix);
+    for(int i=0; i<n; i++)
+    {
+       for(int j=0; j<n; j++)
+       {
+           if(mat[i][j].getC() == 'X') eixs(image,pix,i,j);
+           if(mat[i][j].getC() == 'O') cir(image,pix,i,j);
+       }
+    }
+
+    imageFile.write(reinterpret_cast<char*>(image), 3*pix*pix);
+    imageFile.close();
+    delete[] image;
+    return fileName;
+}
+void Board::grid(RGB* img,int pix)const
+{
+    int q = pix/n;
+   for(int i=1; i<n; i++)
+   {
+       for(int j=0; j<pix; j++)
+       {
+           img[pix*q*i+j].red = 255;
+           img[q*i+j*pix].red = 255;
+           
+       }
+   }
+}
+void Board::eixs(RGB* img,int pix,int x,int y)const
+{
+    int q = pix/n;
+    for(int i=1; i<q; i++)
+    {
+        img[pix*q*x+pix*i+y*q+i].blue = 255;
+        img[(pix*q*x+pix*i+q)+y*q-i].blue = 255;
+    }
+}
+
+void Board::cir(RGB* img,int pix,int x,int y)const
+{
+    int q = pix/n;
+    int p = pix*q*x+y*q;
+    int m = p+pix*(q/2)+(q/2);
+    int r = q/2;
+    int xs = x*q, ys = y*q;
+    int xm = xs + q/2, ym = ys + q/2;
+    for(int i=xs; i<((x+1)*q) ; i++)
+    {
+        for(int j=ys; j<((y+1)*q); j++)
+        {
+            if(abs((i-xm)*(i-xm)+(j-ym)*(j-ym)-r*r) <= (q/r)*(q/r)*(q/r)*(q/r)*(q/r)*(q/r))
+                img[point(pix,i,j)].green = 255;
+        }
+    }
+}
+int Board::point(int pix,int x,int y)const
+{
+    return pix*x+y;
+}
