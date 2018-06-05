@@ -1,6 +1,6 @@
 #include "Board.h"
 using namespace std;
-Board::Board(): mat(new Node *[1])
+Board::Board() : mat(new Node *[1])
 {
     this->n = 1;
     for (int i = 0; i < n; i++)
@@ -57,9 +57,10 @@ Board::~Board()
         throw ex;
     } 
 }*/
-Node &Board::operator[](const Coordinate& cr) const{
-  int a = cr.getX(), b = cr.getY();
-    
+Node &Board::operator[](const Coordinate &cr) const
+{
+    int a = cr.getX(), b = cr.getY();
+
     if (a < n && a >= 0 && b < n && b >= 0)
         return mat[a][b];
     else
@@ -68,7 +69,7 @@ Node &Board::operator[](const Coordinate& cr) const{
         ex.setA(a);
         ex.setB(b);
         throw ex;
-    } 
+    }
 }
 void Board::operator=(char c)
 {
@@ -116,11 +117,11 @@ istream &operator>>(istream &cin, Board &board)
     cin >> str;
     Board b(str.length());
     int j = 0;
-    while(j < b.n )
+    while (j < b.n)
     {
-        for(int i = 0 ; i<b.n ; i++)
-        {          
-            const char* c = str.c_str();
+        for (int i = 0; i < b.n; i++)
+        {
+            const char *c = str.c_str();
             b.mat[j][i].setC(c[i]);
         }
         j++;
@@ -128,13 +129,12 @@ istream &operator>>(istream &cin, Board &board)
     }
     board = b;
     return cin;
-
 }
 int Board::size() const
 {
     return n;
 }
-string Board::getTime()const
+string Board::getTime() const
 {
     time_t timeObj;
     time(&timeObj);
@@ -145,67 +145,70 @@ string Board::getTime()const
 }
 string Board::draw(const int pix) const
 {
-    string fileName = getTime() + ".ppm";
+    string fileName = getTime() + "-board" + to_string(this->n) +".ppm";
     ofstream imageFile(fileName, ios::out | ios::binary);
-    imageFile << "P6" << endl << pix <<" " << pix << endl << 255 << endl;
-    int pixs = pix*pix;
-    RGB * image = new RGB[pixs];
-    grid(image,pix);
-    for(int i=0; i<n; i++)
+    imageFile << "P6" << endl
+              << pix << " " << pix << endl
+              << 255 << endl;
+    int pixs = pix * pix;
+    RGB *image = new RGB[pixs];
+    grid(image, pix);
+    for (int i = 0; i < n; i++)
     {
-       for(int j=0; j<n; j++)
-       {
-           if(mat[i][j].getC() == 'X') eixs(image,pix,i,j);
-           if(mat[i][j].getC() == 'O') cir(image,pix,i,j);
-       }
+        for (int j = 0; j < n; j++)
+        {
+            if (mat[i][j].getC() == 'X')
+                eixs(image, pix, i, j);
+            if (mat[i][j].getC() == 'O')
+                cir(image, pix, i, j);
+        }
     }
 
-    imageFile.write(reinterpret_cast<char*>(image), 3*pix*pix);
+    imageFile.write(reinterpret_cast<char *>(image), 3 * pix * pix);
     imageFile.close();
     delete[] image;
     return fileName;
 }
-void Board::grid(RGB* img,int pix)const
+void Board::grid(RGB *img, int pix) const
 {
-    int q = pix/n;
-   for(int i=1; i<n; i++)
-   {
-       for(int j=0; j<pix; j++)
-       {
-           img[pix*q*i+j].red = 255;
-           img[q*i+j*pix].red = 255;
-           
-       }
-   }
-}
-void Board::eixs(RGB* img,int pix,int x,int y)const
-{
-    int q = pix/n;
-    for(int i=1; i<q; i++)
+    int q = pix / n;
+    for (int i = 1; i < n; i++)
     {
-        img[pix*q*x+pix*i+y*q+i].blue = 255;
-        img[(pix*q*x+pix*i+q)+y*q-i].blue = 255;
-    }
-}
-
-void Board::cir(RGB* img,int pix,int x,int y)const
-{
-    int q = pix/n;
-    int p = pix*q*x+y*q;
-    int m = p+pix*(q/2)+(q/2);
-    int r = q/2;
-    int xs = x*q, ys = y*q;
-    int xm = xs + q/2, ym = ys + q/2;
-    for(int i=xs; i<((x+1)*q) ; i++)
-    {
-        for(int j=ys; j<((y+1)*q); j++)
+        for (int j = 0; j < pix; j++)
         {
-            if(abs((i-xm)*(i-xm)+(j-ym)*(j-ym)-r*r) <= (q/r)*(q/r)*(q/r)*(q/r)*(q/r)*(q/r))
-                img[point(pix,i,j)].green = 255;
+            img[pix * q * i + j].red = 255;
+            img[q * i + j * pix].red = 255;
         }
     }
 }
-int Board::point(int pix,int x,int y)const
+void Board::eixs(RGB *img, int pix, int x, int y) const
 {
-    return pix*x+y;
+    int q = pix / n;
+    for (int i = 1; i < q; i++)
+    {
+        img[pix * q * x + pix * i + y * q + i].blue = 255;
+        img[(pix * q * x + pix * i + q) + y * q - i].blue = 255;
+    }
+}
+
+void Board::cir(RGB *img, int pix, int x, int y) const
+{
+    int q = pix / n;
+    int p = pix * q * x + y * q;
+    int m = p + pix * (q / 2) + (q / 2);
+    int r = q / 2;
+    int xs = x * q, ys = y * q;
+    int xm = xs + q / 2, ym = ys + q / 2;
+    for (int i = xs; i < ((x + 1) * q); i++)
+    {
+        for (int j = ys; j < ((y + 1) * q); j++)
+        {
+            if (abs((i - xm) * (i - xm) + (j - ym) * (j - ym) - r * r) <= (q / r) * (q / r) * (q / r) * (q / r) * (q / r) * (q / r))
+                img[point(pix, i, j)].green = 255;
+        }
+    }
+}
+int Board::point(int pix, int x, int y) const
+{
+    return pix * x + y;
 }
